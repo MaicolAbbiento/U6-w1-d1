@@ -4,17 +4,29 @@
 
 <html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
+            <div class="container">
+                <header class="d-flex justify-content-center py-3">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"><a href="default" class="nav-link" aria-current="page">Home</a></li>
+                        <li class="nav-item"><a href="aggiuntiDipendente" class="nav-link">Aggiunti un dipendente</a></li>
+                        <li class="nav-item"><a href="faiUnpagamento" class="nav-link">fai un pagamento </a></li>
+                        <li class="nav-item"><a href="WebForm1" class="nav-link"> lista pagamenti</a></li>
+                    </ul>
+                </header>
+            </div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </form>
 </body>
+<script src="Scripts/bootstrap.min.js"></script>
 </html>

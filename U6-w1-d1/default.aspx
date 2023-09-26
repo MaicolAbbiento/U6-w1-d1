@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Repeater ID="Repeater1" runat="server" ItemType="U6_w1_d1.Dipendente">
         <ItemTemplate>
-        <div> 
+        <div class=" container m-2 border border-1"> 
             <p><%# Item.Nome %> <%# Item.Cognome %>  mansione <%# Item.Mansione %> 
                 ha <%# Item.NumeroDiFigli%> figli/o  il suo codice fiscale è <%# Item.CodiceFiscale %>
                 <%# Item.Coniugatostring %>
