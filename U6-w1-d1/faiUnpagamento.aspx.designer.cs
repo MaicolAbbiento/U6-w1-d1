@@ -69,6 +69,15 @@ namespace U6_w1_d1
         protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
 
         /// <summary>
+        /// Controllo errore2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errore2;
+
+        /// <summary>
         /// Controllo Button1.
         /// </summary>
         /// <remarks>

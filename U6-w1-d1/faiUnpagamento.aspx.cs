@@ -26,11 +26,17 @@ namespace U6_w1_d1
                 errore1.Visible = true;
                 errore1.InnerHtml = "si prega di inserire un valore numerico senza inserire valute";
             }
-
-            if (!errore1.Visible)
+            if (DropDownList1.SelectedItem.Value != "")
             {
-                Pagamento pagamento = new Pagamento(CodiceFiscale.Text, Convert.ToInt32(soldi.Text), DropDownList1.SelectedItem.Value);
-                pagamento.faiPagamento();
+                if (!errore1.Visible)
+                {
+                    Pagamento pagamento = new Pagamento(CodiceFiscale.Text, Convert.ToInt32(soldi.Text), DropDownList1.SelectedItem.Value);
+                    pagamento.faiPagamento();
+                }
+            }
+            else
+            {
+                errore2.InnerHtml = "selezionare un opzione";
             }
         }
     }

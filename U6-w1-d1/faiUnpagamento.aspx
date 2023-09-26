@@ -11,9 +11,11 @@
     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="campo richiesto" ControlToValidate="soldi"></asp:RequiredFieldValidator>
         <p id ="errore1" runat="server"> </p>
     <asp:DropDownList ID="DropDownList1" runat="server">
+        <asp:ListItem  Value=""  Text="seleziona un opzione"></asp:ListItem>
         <asp:ListItem Value="stipendio" Text="stipendio"></asp:ListItem>
         <asp:ListItem Value="acconto" Text="acconto"></asp:ListItem>
     </asp:DropDownList>
+            <p id ="errore2" runat="server"> </p>
     <asp:Button ID="Button1" runat="server" Text="Button"  OnClick="Button1_Click"/>
 
 </asp:Content>

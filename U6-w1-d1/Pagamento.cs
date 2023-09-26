@@ -20,11 +20,22 @@ namespace U6_w1_d1
         public Pagamento()
         { }
 
+        public List<Pagamento> List = new List<Pagamento>();
+
         public Pagamento(string codiceFiscale, decimal pagamenti, string stipendio)
         {
             CodiceFiscale = codiceFiscale;
             Pagamenti = pagamenti;
             stipendiostring = stipendio;
+        }
+
+        public Pagamento(int id, string periodoPagamento, decimal pagamenti, bool stipendio, int idImpiegati)
+        {
+            Id = id;
+            PeriodoPagamento = periodoPagamento;
+            Pagamenti = pagamenti;
+            Stipendio = stipendio;
+            IdImpiegati = idImpiegati;
         }
 
         public void converetStipendio()
@@ -76,6 +87,30 @@ namespace U6_w1_d1
             {
                 conn.Close();
             }
+        }
+
+        public void ListaPagamenti()
+        {
+            string connetionString = ConfigurationManager.ConnectionStrings["ConnectionStringDB"].ConnectionString.ToString();
+            SqlConnection conn = new SqlConnection(connetionString);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM stipendi ", conn);
+            SqlDataReader sqlDataReader;
+
+            conn.Open();
+            sqlDataReader = cmd.ExecuteReader();
+
+            while (sqlDataReader.Read())
+            {
+                Id = Convert.ToInt32(sqlDataReader["Idstipendi"].ToString());
+                PeriodoPagamento = sqlDataReader["PeriodoPagamento"].ToString();
+                Pagamenti = Convert.ToDecimal(sqlDataReader["Pagamento"].ToString());
+                Stipendio = Convert.ToBoolean(sqlDataReader["Stipendio"].ToString());
+                IdImpiegati = Convert.ToInt32(sqlDataReader["IdImpiegati"].ToString());
+                Pagamento Pagamento = new Pagamento(Id, PeriodoPagamento, Pagamenti, Stipendio, IdImpiegati);
+                List.Add(Pagamento);
+            }
+
+            conn.Close();
         }
     }
 }

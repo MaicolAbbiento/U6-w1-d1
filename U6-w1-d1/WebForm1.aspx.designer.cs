@@ -11,7 +11,7 @@ namespace U6_w1_d1
 {
 
 
-    public partial class _default
+    public partial class WebForm1
     {
 
         /// <summary>

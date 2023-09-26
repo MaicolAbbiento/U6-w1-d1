@@ -16,6 +16,7 @@ namespace U6_w1_d1
         public string Indirizzo { get; set; }
         public string CodiceFiscale { get; set; }
         public bool Coniugato { get; set; }
+        public string Coniugatostring { get; set; }
         public int NumeroDiFigli { get; set; } = 0;
         public string Mansione { get; set; }
         public bool inserito { get; set; }
@@ -30,6 +31,37 @@ namespace U6_w1_d1
             Coniugato = coniugato;
             NumeroDiFigli = numeroDiFigli;
             Mansione = mansione;
+        }
+
+        public Dipendente(int id, string nome, string cognome, string indirizzo, string codiceFiscale, bool coniugato, string coniugatostring, int numeroDiFigli, string mansione)
+        {
+            Id = id;
+            Nome = nome;
+            Cognome = cognome;
+            Indirizzo = indirizzo;
+            CodiceFiscale = codiceFiscale;
+            Coniugato = coniugato;
+            Coniugatostring = coniugatostring;
+            NumeroDiFigli = numeroDiFigli;
+            Mansione = mansione;
+            this.inserito = inserito;
+        }
+
+        public Dipendente()
+        { }
+
+        public List<Dipendente> dipendenti = new List<Dipendente>();
+
+        public string converetStipendio()
+        {
+            if (Coniugato)
+            {
+                return Coniugatostring = "è coniugato";
+            }
+            else
+            {
+                return Coniugatostring = "non è coniugato";
+            }
         }
 
         public void NuovoDipendente()
@@ -65,6 +97,35 @@ namespace U6_w1_d1
             {
                 conn.Close();
             }
+        }
+
+        public void ListaDipendenti()
+        {
+            string connetionString = ConfigurationManager.ConnectionStrings["ConnectionStringDB"].ConnectionString.ToString();
+            SqlConnection conn = new SqlConnection(connetionString);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM impiegati ", conn);
+            SqlDataReader sqlDataReader;
+
+            conn.Open();
+            sqlDataReader = cmd.ExecuteReader();
+
+            while (sqlDataReader.Read())
+            {
+                Id = Convert.ToInt32(sqlDataReader["IdImpiegati"].ToString());
+                Nome = sqlDataReader["Nome"].ToString();
+                Cognome = sqlDataReader["Cognome"].ToString();
+                Indirizzo = sqlDataReader["Indirizzo"].ToString();
+                CodiceFiscale = sqlDataReader["CodiceFiscale"].ToString();
+                Coniugato = Convert.ToBoolean(sqlDataReader["Coniugato"].ToString());
+                Coniugatostring = converetStipendio();
+                NumeroDiFigli = Convert.ToInt32(sqlDataReader["NumeroDiFigli"].ToString());
+                Mansione = sqlDataReader["Mansione"].ToString();
+
+                Dipendente dipendente = new Dipendente(Id, Nome, Cognome, Indirizzo, CodiceFiscale, Coniugato, Coniugatostring, NumeroDiFigli, Mansione);
+                dipendenti.Add(dipendente);
+            }
+
+            conn.Close();
         }
     }
 }
